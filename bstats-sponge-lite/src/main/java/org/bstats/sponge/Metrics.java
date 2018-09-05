@@ -38,11 +38,11 @@ public interface Metrics {
     TimerTask getTimerTask();
 
     /**
-     * Gets the version of this bStats instance.
+     * Gets the revision of this bStats instance.
      *
-     * @return version
+     * @return revision
      */
-    int getVersion();
+    int getRevision();
 
     /**
      * Links another metrics instance to this one, which should be the master instance.

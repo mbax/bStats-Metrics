@@ -86,8 +86,8 @@ public class Metrics2 implements Metrics {
         }
 
         @Override
-        public int getVersion() {
-            return 1;
+        public int getRevision() {
+            return 0;
         }
 
         @Override
@@ -107,8 +107,11 @@ public class Metrics2 implements Metrics {
         }
     }
 
+    // The version of bStats info being sent
+    public static final int B_STATS_VERSION = 1;
+
     // The version of this bStats class
-    public static final int B_STATS_VERSION = 2;
+    public static final int B_STATS_CLASS_REVISION = 2;
 
     // The url to which the data is sent
     private static final String URL = "https://bStats.org/submitData/sponge";
@@ -188,8 +191,8 @@ public class Metrics2 implements Metrics {
     }
 
     @Override
-    public int getVersion() {
-        return B_STATS_VERSION;
+    public int getRevision() {
+        return B_STATS_CLASS_REVISION;
     }
 
     /**
@@ -236,9 +239,11 @@ public class Metrics2 implements Metrics {
 
         String pluginName = plugin.getName();
         String pluginVersion = plugin.getVersion().orElse("unknown");
+        int revision = getRevision();
 
         data.addProperty("pluginName", pluginName);
         data.addProperty("pluginVersion", pluginVersion);
+        data.addProperty("metricsRevision", revision);
 
         JsonArray customCharts = new JsonArray();
         for (CustomChart customChart : charts) {
